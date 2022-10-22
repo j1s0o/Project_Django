@@ -1,0 +1,61 @@
+{% extends 'main.html' %} 
+{% block header_text %}
+<span class="text">Rules</span>
+{% endblock header_text %}
+
+{% block content %}
+<div
+  class="container"
+  style="
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-height: 100%;
+    padding: 30px;
+    padding-bottom: 20px;
+  "
+>
+  <h2><em>Rule 0: Be kind to each other</em></h2>
+  <p style="font-size: 12 px, white-space: normal">
+    Support each other while still following the below rules, respect each
+    other, and don't be a jerk. Any harassment or bullying will not be
+    tolerated.
+  </p>
+  <h2 style="margin-top: 10px"><em>Rule 1: Don't mess with the Infra</em></h2>
+  <p style="font-size: 12 px, white-space: normal">
+    Do not harm the infrastructure itself. Port scanners, DOS attacks, and any
+    attempts to attack the CTFd architecture are forbidden. Any breaches to this
+    rule can result in an immediate disqualification.
+  </p>
+  <h2 style="margin-top: 10px">
+    <em>Rule 2: Don't share flags or detailed steps</em>
+  </h2>
+  <p style="font-size: 12 px, white-space: normal">
+    Do not share or ask for flags or detailed steps on how to solve challenges
+    with anyone other than the organizing team. If you have any questions about
+    challenges that may stray into discussing details about challenges, ask an
+    organizer.
+  </p>
+  <h2 style="margin-top: 10px"><em>Rule 3: Flag Format</em></h2>
+  <p style="font-size: 12 px, white-space: normal">
+    Unless otherwise stated, the flag format is <b>maple{[a-zA-Z0-9_@!\-?]+}</b>
+  </p>
+  <h2 style="margin-top: 10px">
+    <em>Rule 4: Communications with the Organizers</em>
+  </h2>
+  <p style="font-size: 12 px, white-space: normal">
+    All important announcements and communications with teams will be made
+    through the Discord. You may use the ticketing system in the discord to
+    contact the organizers with any questions. While organizers may give
+    clarifications to challenge parameters when asked, it is highly unlikely
+    that hints will be given through tickets. We may release hints for
+    challenges that remain unsolved for a significant amount of time. If so, an
+    announcement will be made in the announcements channel.
+  </p>
+  <h2 style="margin-top: 10px"><em>Rule 5: Don't hoard flags</em></h2>
+  <p style="font-size: 12 px, white-space: normal">
+    Flag hoarding is a practice where teams submit all their flags in one go at
+    the end of the CTF. Violators will be met with point penalties at the
+    organizers' discretion for doing so.
+  </p>
+</div>
+{% endblock content %}

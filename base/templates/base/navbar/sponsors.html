@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% block header_text %}
+<span class="text">Sponsor</span>
+{% endblock header_text %}
+
+ {% block content %}
+<div
+  class="container"  
+  style="
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-height: 100%;
+    padding-bottom: 20px;
+  "
+>
+  <p style="margin-top: 20px">
+    <em>Thank you to our generous sponsors for making this event possible</em>.
+  </p>
+
+  <h2><em>Prize Sponsor</em></h2>
+  <p style="font-size: 20 px, white-space: normal">
+    1 kiss from giongnef 
+    <a href="https://www.facebook.com/rong.truong.372">Rồng Trương (GiongfNef)</a>.
+  </p>
+  <a href="https://www.facebook.com/rong.truong.372"
+    ><img
+      src="\static\images\Giongnef.jpg"
+      width="100px"
+  /></a>
+  <br />
+  <h2 style="margin-top: 10px">
+    <em>Infra Sponsor - Google Cloud Platform</em>
+  </h2>
+  <p style="font-size: 20 px, white-space: normal">
+    Infrastructure was provided with the support of Google Cloud Platform. If
+    your team is looking for a infrastructure sponsor, you can check out
+    <a href="https://goo.gle/ctfsponsorship">goo.gle/ctfsponsorship</a>.
+  </p>
+  <a href="https://cloud.google.com/"
+    ><img
+      src="\static\images\Giongnef.jpg"
+      width="100px"
+  /></a>
+</div>
+{% endblock content %}

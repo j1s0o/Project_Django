@@ -1,0 +1,50 @@
+{% extends 'main.html' %} 
+{% load static %}
+{% block header_text %}
+<span class="text">Home</span>
+{% endblock header_text %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/styles/style.css' %} " id="bootstrap-css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">    
+{% endblock css %}
+
+{% block content %}
+
+<div id="particles">
+  <div id="webcoderskull">
+    <h1 style="font-family: 'Press Start 2P', cursive ; font-size:100px ">SEATF</h1>
+    <p id="author" style="font-family: 'Dancing Script', cursive;">Dev by group 4</p>
+    <div class="time-content">
+      <div class="time days">
+        <span class="number"></span>
+        <span class="text">days</span>
+      </div>
+      <div class="time hours">
+        <span class="number"></span>
+        <span class="text">hours</span>
+      </div>
+      <div class="time minutes">
+        <span class="number"></span>
+        <span class="text">minutes</span>
+      </div>
+      <div class="time seconds">
+        <span class="number"></span>
+        <span class="text">seconds</span>
+      </div>
+</div>
+    </div>
+  </div>  
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block callfunc %}
+Clock(2,2,2,2);
+{% endblock callfunc %}

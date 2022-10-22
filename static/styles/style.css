@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@300;400;500;600;700&display=swap');
+
+#webcoderskull {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    padding: 0 20px;
+    width: 100%;
+    text-align: center;
+}
+canvas {
+    width: 150%;
+    height: 150%;
+    padding: 0;
+    margin: 0;
+    background-color: #f5eff4;
+}
+
+h1 {
+ 
+    color: rgb(167, 89, 119);
+}
+#author {
+    
+    color: rgb(199, 106, 106);
+}
+
+

@@ -1,0 +1,117 @@
+<div class="sidebar close">
+  <div class="logo-details">
+    <i class="bx bx-code-block"></i>
+    <span class="logo_name">SEATF</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a href="/">
+        <i class="bx bx-home"></i>
+        <span class="link_name">Home</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/">Home</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/teams">
+        <i class="bx bx-group"></i>
+        <span class="link_name">Teams</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/teams">Teams</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="iocn-link">
+        <a href="/chall">
+          <i class="bx bx-collection"></i>
+          <span class="link_name">Challenge</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="/chall">Challenge</a></li>
+        <li><a href="/chall/web">Web</a></li>
+        <li><a href="/chall/crypto">Crypto</a></li>
+        <li><a href="/chall/pwn">Pwnable</a></li>
+        <li><a href="/chall/re">Reverse</a></li>
+      </ul>
+    </li>
+
+    </li>
+    <li>
+      <a href="#">
+        <i class="bx bx-line-chart"></i>
+        <span class="link_name">Scoreboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Scoreboard</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/sponsors">
+        <i class="bx bx-compass"></i>
+        <span class="link_name">Sponsor</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/sponsors">Sponsor</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="bx bx-chat"></i>
+        <span class="link_name">Faq</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Faq</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/rules">
+        <i class="bx bx-receipt"></i>
+        <span class="link_name">Rules</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/rules">Rules</a></li>
+      </ul>
+    </li>
+
+    {% if request.user.is_authenticated %}
+    <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <!--<img src="image/profile.jpg" alt="profileImg">-->
+        </div>
+        <div class="name-job">
+          <div class="profile_name">{{request.user.username}}</div>
+          <div class="job">Hacker</div>
+        </div>
+        <a href ="/logout"><i class='bx bx-log-out' ></i></a>
+      </div>
+    </li>
+    {% else %}
+    <li>
+      <a href="/register">
+        <i class='bx bxs-registered'></i>
+        <span class="link_name">Register</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/register">Register</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/login">
+        <i class='bx bx-log-in' ></i>
+        <span class="link_name">Login</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/login">Login</a></li>
+      </ul>
+    </li>
+  {% endif %}
+  </ul>
+</div>
+
+

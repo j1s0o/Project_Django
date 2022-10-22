@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block header_text %}
+{% if request.path == "/chall/" %}<span class="text">Challenge</span>
+{% else %}{% endif %}
+{% block header_chall %}{% endblock header_chall %}
+{% endblock header_text %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/challenges.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+ {% if request.path == "/chall/" %}
+{% for i in type_chall %}
+
+<div class="chall_background">
+  <div class="row">
+    <h2  style="text-align : center">{{i}}</h2>
+    {% for j in chall %}
+    {% if j.type == i %}
+    <div class="col-md-2 col-sm-6" style = "padding:30px 20px;">
+      <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="{{j.img}}" alt="Photo of sunset">
+        <h5 class="card-title  mt-2 mb-2 text-center ">{{j.chall_name}}</h5> 
+        <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>  
+
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{j.chall_name}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label  class="col-form-label">Decryption</label>
+                <p>{{i.decription}}</p>
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Author : {{j.author}}</label>
+              </div>
+              <div class="mb-3">
+                <label  class="col-form-label">Link : {{j.link}}</label>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Flag:</label>
+                <input type="text" class="form-control" id="message-text">
+              </div>
+              <div class="mb-3">
+                <label  class="col-form-label">Point : {{i.point}}</label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>   
+    {% endif %}
+    {% endfor %}
+    
+    {% endfor %}
+    {% elif request.path == "/chall/web/" %}
+    {% block web_category %}{% endblock web_category %}
+    {% elif request.path == "/chall/crypto/" %}
+    {% block crypto_category %}{% endblock crypto_category %}
+    {% elif request.path == "/chall/pwn/"%}
+    {% block pwn_category %}{% endblock pwn_category %}
+    {% elif request.path == "/chall/re/"%}
+    {%block re_category %}{% endblock re_category %}
+    {% endif %}
+    
+  
+    {% endblock content %}
+
+    {% block callfunc %}
+    MenuSelect();
+    Modal_Card();
+    {% endblock callfunc %}
+  </div>
+</div>

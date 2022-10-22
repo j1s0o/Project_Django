@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+{% block header_text %}
+<span class="text">Teams</span>
+{% endblock header_text %}
+
+{% block content %}
+<a href="{% url 'create_team' %}"> U don't have team ??? </a>
+
+{% for i in team %}
+<h1> {{i.name}}</h1>
+<a href="{% url 'update_team' i.id %}"> Edit</a>
+{% endfor %}
+{% endblock content %}
