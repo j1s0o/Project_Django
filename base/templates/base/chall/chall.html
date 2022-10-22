@@ -12,47 +12,48 @@
 
 {% block content %}
 
- {% if request.path == "/chall/" %}
+{% if request.path == "/chall/" %}
 {% for i in type_chall %}
 
 <div class="chall_background">
   <div class="row">
-    <h2  style="text-align : center">{{i}}</h2>
+    <h2 style="text-align : center">{{i}}</h2>
     {% for j in chall %}
     {% if j.type == i %}
-    <div class="col-md-2 col-sm-6" style = "padding:30px 20px;">
+    <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+      <!-- Button trigger modal -->
       <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <img src="{{j.img}}" alt="Photo of sunset">
-        <h5 class="card-title  mt-2 mb-2 text-center ">{{j.chall_name}}</h5> 
-        <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>  
-
+        <img src="{{j.img}}" alt="error">
+        <h5 class="card-title  mt-2 mb-2 text-center ">{{j.chall_name}}</h5>
+        <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
       </div>
     </div>
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">{{j.chall_name}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
+          </div>x`
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label  class="col-form-label">Decryption</label>
-                <p>{{i.decription}}</p>
+                <label class="col-form-label">Decryption</label>
+                <p>{{j.decription}}</p>
               </div>
               <div class="mb-3">
                 <label class="col-form-label">Author : {{j.author}}</label>
               </div>
               <div class="mb-3">
-                <label  class="col-form-label">Link : {{j.link}}</label>
+                <label class="col-form-label">Link : {{j.link}}</label>
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Flag:</label>
                 <input type="text" class="form-control" id="message-text">
               </div>
               <div class="mb-3">
-                <label  class="col-form-label">Point : {{i.point}}</label>
+                <label class="col-form-label">Point : {{j.point}}</label>
               </div>
             </form>
           </div>
@@ -62,10 +63,10 @@
           </div>
         </div>
       </div>
-    </div>   
+    </div>
     {% endif %}
     {% endfor %}
-    
+
     {% endfor %}
     {% elif request.path == "/chall/web/" %}
     {% block web_category %}{% endblock web_category %}
@@ -76,8 +77,8 @@
     {% elif request.path == "/chall/re/"%}
     {%block re_category %}{% endblock re_category %}
     {% endif %}
-    
-  
+
+
     {% endblock content %}
 
     {% block callfunc %}

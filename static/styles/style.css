@@ -13,16 +13,16 @@ canvas {
     height: 150%;
     padding: 0;
     margin: 0;
-    background-color: #f5eff4;
+    background-color: #00356B;
 }
 
 h1 {
  
-    color: rgb(167, 89, 119);
+    color: rgb(255, 255, 255);
 }
 #author {
     
-    color: rgb(199, 106, 106);
+    color: rgb(214, 213, 215);
 }
 
 
