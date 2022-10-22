@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home , name='home'),
     path('rules/' , views.rules , name='rules'),
     path('sponsors/' , views.sponsors , name='sponsors'),
+    path('scoreboard/' , views.scoreboard , name='scoreboard'),
     path('teams/', views.teams , name='teams'),
     path('chall/', views.chall , name='chall'),
     path('chall/web/', views.web , name='challweb'),

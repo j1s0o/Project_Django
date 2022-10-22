@@ -19,6 +19,9 @@ def rules(request):
 def sponsors(request):
     return render(request, 'base/navbar/sponsors.html')
 
+def scoreboard(request):
+    return render(request, 'base/navbar/scoreboard.html')
+
 def teams(request):
     team  = Team.objects.all() # get all teams
     context = {'team': team}

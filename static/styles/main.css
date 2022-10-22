@@ -349,3 +349,8 @@ div [class^="col-"]{
 }
 
 
+.img-fluid
+{
+  max-width: 100%;
+  height: 65%;
+}

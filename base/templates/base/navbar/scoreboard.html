@@ -1,0 +1,126 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/styles/scoreboard.css' %} " />
+{% endblock css %}
+
+{% block header_text %}
+<span class="text">Scoreboard</span>
+{% endblock header_text %}
+
+
+
+{% block content %}
+<div class="container">
+	<div class="line_graph"  >
+		<img  class="img-fluid" src="{% static '\images\scoreboard.jpg' %}" alt="Scoreboard not found" >
+		
+	</div>
+
+
+
+	<div id="score">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Team Name</th>
+						<th>Points</th>
+						<th>Team Solves</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">1</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Cut3_Guys</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">350</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">6</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">2</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Fan_thay_Dung~20_nam</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">250</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">5</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">3</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Purfect</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">150</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">4</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">4</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">SOT</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">50</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">3</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">5</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">b1t5_Grew</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">20</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">2</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">6</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">UIT_winner_-_ko_top_1_ban_truong</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">0</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">0</h6>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}
