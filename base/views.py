@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate as auth , login as auth_login , logout as auth_logout
 from .models import Team , Chall 
 from .forms import TeamForm 
-# Create your views here.
+# Create views here.
 
 def home(request):
     user = User.objects.all() # show all challenges
@@ -30,16 +30,16 @@ def teams(request):
 
 def chall(request ):
     chall = Chall.objects.all() # get all
-    web = Chall.objects.filter(type="Web exploite")
+    web = Chall.objects.filter(type="Web exploit")
     crypto = Chall.objects.filter(type="Cryptography")
     pwn = Chall.objects.filter(type="Pwnable")
     re = Chall.objects.filter(type="Reverse")
-    type_chall = ("Web exploite" , "Cryptography" , "Pwnable" , "Reverse")
+    type_chall = ("Web exploit" , "Cryptography" , "Pwnable" , "Reverse")
     context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall}
     return render(request ,  'base/chall/chall.html' , context)
     
 def web(request):
-    web = Chall.objects.filter(type="Web exploite")
+    web = Chall.objects.filter(type="Web exploit")
     context = {'web': web}
     return render(request, 'base/chall/web.html', context)
 def crypto(request):

@@ -14,7 +14,7 @@ class Team(models.Model):
         return self.name
 
 class Chall(models.Model):
-    list = (('Web exploite' , 'Web') , ('Cryptography', 'Crypto') , ('Pwnable','Pwn') , ('Reverse','Re'))
+    list = (('Web exploit' , 'Web') , ('Cryptography', 'Crypto') , ('Pwnable','Pwn') , ('Reverse','Re'))
     chall_id = models.IntegerField(blank = True , default= 1)
     chall_name = models.CharField(max_length=50)
     decription = models.TextField(null=True , blank=True)

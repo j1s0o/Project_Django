@@ -3,11 +3,116 @@
 <span class="text">Teams</span>
 {% endblock header_text %}
 
-{% block content %}
-<a href="{% url 'create_team' %}"> U don't have team ??? </a>
 
-{% for i in team %}
+
+{% block content %}
+<!--<a href="{% url 'create_team' %}"> U don't have team ??? </a>-->
+<div class="container">
+	<div id="score">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Team Name</th>
+						<th>Quote</th>
+						<th>Member</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">1</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Cut3_Guys</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Cut3 Guys in your area</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">4/10</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">2</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Fan_thay_Dung~20_nam</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Em thay gi khong? 10 phay mon web do!</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">4/10</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">3</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Purfect</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">CLB tai nang, only tai lang</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">10/10</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">4</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">SOT</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">Hội người già cao tuổi</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">6/10</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">5</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">b1t5_Grew</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">I am Trung, I am more sandsome than Huyen</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">8/10</h6>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h6 style="color: #008cba;">6</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">UIT_winner_-_ko_top_1_ban_truong</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">M4k3 UiT GreAT aGaIn ? WanNa W1n ???</h6>
+						</td>
+						<td>
+							<h6 style="color: #008cba;">10/10</h6>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!--{% for i in team %}
 <h1> {{i.name}}</h1>
 <a href="{% url 'update_team' i.id %}"> Edit</a>
-{% endfor %}
+{% endfor %}-->
 {% endblock content %}
+

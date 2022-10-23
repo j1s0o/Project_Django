@@ -13,15 +13,18 @@
 {% block content %}
 
 {% if request.path == "/chall/" %}
+
+<!--Use the loop to clarify each category-->
 {% for i in type_chall %}
 
-<div class="chall_background">
+<div class="container">
   <div class="row">
     <h2 style="text-align : center">{{i}}</h2>
     {% for j in chall %}
     {% if j.type == i %}
     <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
-      <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{j.chall_name}}" chall-decription="{{j.decription}}" chall-link="{{j.link}}">
+      <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
+        chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}">
         <img src="{{j.img}}" alt="error">
         <h5 class="card-title  mt-2 mb-2 text-center ">{{j.chall_name}}</h5>
         <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
@@ -29,8 +32,9 @@
     </div>
     {% endif %}
     {% endfor %}
-
     {% endfor %}
+
+    <!--when access each ctf's category-->
     {% elif request.path == "/chall/web/" %}
     {% block web_category %}{% endblock web_category %}
     {% elif request.path == "/chall/crypto/" %}
@@ -41,6 +45,7 @@
     {%block re_category %}{% endblock re_category %}
     {% endif %}
 
+    <!--Each modal when we click-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -48,25 +53,28 @@
             <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
           </div>
           <div class="modal-body">
+            <!--each part os modal-->
             <form>
-    
               <div class="mb-3">
                 <h5>Decryption</h5>
                 <p class="modal-decription" id="exampleModalLabel"></p>
               </div>
-    
+
               <div class="mb-3">
                 <h5>Link</h5>
                 <a class="modal-link" id="exampleModalLabel" href=""></a>
               </div>
-    
+              <div class="mb-3">
+                <h5>Author</h5>
+                <p class="modal-author" id="exampleModalLabel" href=""></p>
+              </div>
               <div class="mb-3">
                 <label for="flag" class="col-form-label">Flag:</label>
                 <input type="text" class="form-control" id="flag">
               </div>
             </form>
           </div>
-    
+          <!--two fuctions to  đóng và submit flag-->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Submit</button>
@@ -74,29 +82,32 @@
         </div>
       </div>
     </div>
-    
+
     <script type="text/javascript">
       const exampleModal = document.getElementById('exampleModal')
-    exampleModal.addEventListener('show.bs.modal', event => {
-      // Button that triggered the modal
-      const button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      const chall_name = button.getAttribute('chall-name')
-      const decription = button.getAttribute('chall-decription')
-      const link = button.getAttribute('chall-link')
-      const modalTitle = exampleModal.querySelector('.modal-title')
-      const modaldecription = exampleModal.querySelector('.modal-decription')
-      const modalLink = exampleModal.querySelector('.modal-link')
-    
-      
-      modalTitle.textContent = `${chall_name}`
-      modaldecription.textContent = `${decription}`
-      modalLink.textContent = `${link}`
-    
-    
-    })
+      exampleModal.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        const chall_name = button.getAttribute('chall-name')
+        const decription = button.getAttribute('chall-decription')
+        const link = button.getAttribute('chall-link')
+        const author = button.getAttribute('chall-author')
+        const modalTitle = exampleModal.querySelector('.modal-title')
+        const modaldecription = exampleModal.querySelector('.modal-decription')
+        const modalLink = exampleModal.querySelector('.modal-link')
+        const modalAuthor = exampleModal.querySelector('.modal-author')
+        
+
+        modalTitle.textContent = `${chall_name}`
+        modaldecription.textContent = `${decription}`
+        modalLink.textContent = `${link}`
+        modalAuthor.textContent = `${author}`
+        
+        
+      })
     </script>
-    
+
     {% endblock content %}
 
     {% block callfunc %}

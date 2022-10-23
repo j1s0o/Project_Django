@@ -1,25 +1,18 @@
 {% extends 'main.html' %}
 {% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static '/styles/scoreboard.css' %} " />
-{% endblock css %}
-
 {% block header_text %}
 <span class="text">Scoreboard</span>
 {% endblock header_text %}
 
-
-
 {% block content %}
 <div class="container">
-	<div class="line_graph"  >
-		<img  class="img-fluid" src="{% static '\images\scoreboard.jpg' %}" alt="Scoreboard not found" >
-		
+	<!--Line graph scoreboard-->
+	<div class="line_graph">
+		<img class="img-fluid" src="{% static '\images\scoreboard.jpg' %}" alt="Scoreboard not found">
 	</div>
 
-
-
+	<!--Team scoreboard-->
 	<div id="score">
 		<div class="table-responsive">
 			<table class="table table-striped">
@@ -121,6 +114,5 @@
 		</div>
 	</div>
 </div>
-
 
 {% endblock content %}

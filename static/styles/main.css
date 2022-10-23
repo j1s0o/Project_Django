@@ -257,7 +257,7 @@
 .time .number,
 .time .text {
   font-weight: 500;
-  color: rgb(28, 92, 241);
+  color: rgb(0, 0, 5);
 }
 .time .number {
   font-size: 40px;

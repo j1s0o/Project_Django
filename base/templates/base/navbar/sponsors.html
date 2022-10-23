@@ -1,45 +1,38 @@
 {% extends 'main.html' %}
+{% load static %}
+
 {% block header_text %}
 <span class="text">Sponsor</span>
 {% endblock header_text %}
 
- {% block content %}
-<div
-  class="container"  
-  style="
-    overflow-y: hidden;
-    overflow-x: hidden;
-    max-height: 100%;
-    padding-bottom: 20px;
-  "
->
+{% block content %}
+<div class="container">
   <p style="margin-top: 20px">
     <em>Thank you to our generous sponsors for making this event possible</em>.
   </p>
-
-  <h2><em>Prize Sponsor</em></h2>
+  <h2><em>Prize Sponsor & </em></h2>
   <p style="font-size: 20 px, white-space: normal">
-    1 kiss from giongnef 
-    <a href="https://www.facebook.com/rong.truong.372">Rồng Trương (GiongfNef)</a>.
+    1 kiss from dungl
+    <a href="https://www.facebook.com/rong.truong.372">Dũng Lê (Thầy giáo quốc dân)</a>.
   </p>
-  <a href="https://www.facebook.com/rong.truong.372"
-    ><img
-      src="\static\images\Giongnef.jpg"
-      width="100px"
-  /></a>
+  <a href="https://www.facebook.com/rong.truong.372"></a>
+  <div class="line_graph">
+    <img class="img-thumbnail" src="{% static '\images\sponsor.jpg' %}" alt="Scoreboard not found">
+  </div>
   <br />
+</div>
+
+<div class="container">
   <h2 style="margin-top: 10px">
     <em>Infra Sponsor - Google Cloud Platform</em>
   </h2>
   <p style="font-size: 20 px, white-space: normal">
     Infrastructure was provided with the support of Google Cloud Platform. If
     your team is looking for a infrastructure sponsor, you can check out
-    <a href="https://goo.gle/ctfsponsorship">goo.gle/ctfsponsorship</a>.
+    <a href="https://goo.gle/ctfsponsorship">goo.gle/ctfsponsorship</a>
+  <div class="line_graph">
+    <img class="img-thumbnail" src="{% static '\images\sponsor2.jpg' %}" alt="Scoreboard not found">
+  </div>
   </p>
-  <a href="https://cloud.google.com/"
-    ><img
-      src="\static\images\Giongnef.jpg"
-      width="100px"
-  /></a>
 </div>
 {% endblock content %}

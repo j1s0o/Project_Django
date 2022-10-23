@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='chall',
             name='type',
-            field=models.CharField(choices=[('Web exploite', 'Web'), ('Cryptography', 'Crypto'), ('Pwnable', 'Pwn'), ('Reverse', 'Re')], max_length=20),
+            field=models.CharField(choices=[('Web exploit', 'Web'), ('Cryptography', 'Crypto'), ('Pwnable', 'Pwn'), ('Reverse', 'Re')], max_length=20),
         ),
     ]

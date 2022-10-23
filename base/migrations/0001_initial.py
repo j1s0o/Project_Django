@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('chall_name', models.CharField(max_length=50)),
                 ('decription', models.TextField(blank=True, null=True)),
                 ('link', models.TextField(blank=True, null=True)),
-                ('type', models.CharField(choices=[('Web exploite', 'Web'), ('Cryptography', 'Crypto'), ('Pwable', 'Pwn'), ('Reverse', 'Re')], max_length=20)),
+                ('type', models.CharField(choices=[('Web exploit', 'Web'), ('Cryptography', 'Crypto'), ('Pwable', 'Pwn'), ('Reverse', 'Re')], max_length=20)),
                 ('img', models.CharField(blank=True, max_length=50)),
                 ('flag', models.CharField(max_length=255)),
                 ('point', models.IntegerField(default=0)),
