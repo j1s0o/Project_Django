@@ -54,13 +54,3 @@ function MenuSelect() {
 function Card() {
   
 }
-/* usage of this one ?
-function Modal_Card() {
-  $(document).ready(function(){
-    $('#myModal').modal("show"); 
-     $('#myButton').on('click', function(){
-       $('#myModal').modal('show');
-     });
-   });
-  }
-  */
