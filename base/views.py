@@ -55,8 +55,6 @@ def re(request):
     context = {'re': re}
     return render(request, 'base/chall/re.html', context)
 
-
-
 def create_team(request):
     form = TeamForm()
     context = {'form': form}
@@ -91,14 +89,16 @@ def register(request):
         elif password != confirm_password :
             messages.error(request,'Password does not match')
             return redirect('register')
-        elif User.objects.get(username=username) is not None:
-            messages.error(request , "User have already exists")
-            return redirect('register')
         else:
-            user = User.objects.create_user(username , password , email)
-            user.save()
-            auth_login(request, user)
-            return redirect('chall')
+            try:
+                user = User.objects.create_user(username , password , email)
+                user.save()
+                auth_login(request, user)
+                return redirect('chall')
+            except:
+                messages.error(request, 'Something missing or invalid')
+                return redirect('register')
+
     return render(request , 'base/navbar/register.html')
 
 def login(request):
