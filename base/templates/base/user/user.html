@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block header_text %}
-<span class="text">Teams</span>
+<span class="text">Users</span>
 {% endblock header_text %}
 
 
@@ -13,9 +13,8 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Team Name</th>
-						<th>Bio</th>
+						<th>Name</th>
+                        <th>Team</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,17 +32,14 @@
 							<h6 style="color: #008cba;">4/10</h6>
 						</td>
 					</tr> {% endcomment %}
-					{% for team in team %}
+					{% for user in user %}
 					<tr>
 						<td>
-							<h6 style="color: #008cba;">{{team.id}}</h6>
+							<h6 style="color: #008cba;">{{user.username}}</h6>
 						</td>
-						<td>
-							<h6 style="color: #008cba;">{{team.name}}</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">{{team.description}}</h6>
-						</td>
+                        <td>
+                            <h6 style="color: #008cba;">{{user.groups.get}}</h6>        
+                        </td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -53,4 +49,3 @@
 </div> 
 
 {% endblock content %}
-

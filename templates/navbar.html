@@ -61,12 +61,12 @@
       </ul>
     </li>
     <li>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+      <a href="/users">
         <i class="bx bx-chat"></i>
-        <span class="link_name">Faq</span>
+        <span class="link_name">Users</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Faq</a></li>
+        <li><a class="link_name" href="/users">Users</a></li>
       </ul>
     </li>
     <li>
@@ -87,7 +87,7 @@
         </div>
         <div class="name-job">
           <div class="profile_name">{{request.user.username}}</div>
-          <div class="job">Hacker</div>
+          <div class="job">{{request.user.groups.get}}</div>
         </div>
         <a href ="/logout"><i class='bx bx-log-out' ></i></a>
       </div>

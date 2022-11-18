@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Team
+from django.contrib.auth.models import Group
 
 class TeamForm(ModelForm):
     class Meta:
-        model = Team
+        model = Group
         fields = "__all__"
 

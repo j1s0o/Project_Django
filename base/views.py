@@ -2,9 +2,10 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserCreationForm  
 from django.contrib.auth import authenticate as auth , login as auth_login , logout as auth_logout
-from .models import Team , Chall 
+from .models import Team , Chall , UserProfile
 from .forms import TeamForm 
 # Create your views here.
 
@@ -23,7 +24,7 @@ def scoreboard(request):
     return render(request, 'base/navbar/scoreboard.html')
 
 def teams(request):
-    team  = Team.objects.all() # get all teams
+    team  = Group.objects.all() # get all teams
     context = {'team': team}
     return render(request, 'base/teams/teams.html' , context)
 
@@ -121,3 +122,8 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('home')
+
+def Users(request):
+    user = User.objects.all()
+    context = {'user': user}
+    return render(request, 'base/user/user.html', context=context)

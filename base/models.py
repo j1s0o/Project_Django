@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+from django.contrib.auth.models import Group
+
+
+Group.add_to_class('description', models.CharField(max_length=180,null=True, blank=True))
+Group.add_to_class('score', models.PositiveIntegerField(default=0))
+
 
 class Team(models.Model):
     name = models.CharField(max_length=55)
@@ -30,3 +36,10 @@ class Chall(models.Model):
     def __str__(self):
         return self.chall_name
 
+class UserProfile(models.Model):
+    username = models.OneToOneField(User , on_delete= models.CASCADE)
+    user = models.CharField(max_length=20)
+    score = models.PositiveIntegerField(default=0)
+    bio = models.CharField(max_length=100 , null=True, blank= True)
+    def __str__(self):
+        return self.user
