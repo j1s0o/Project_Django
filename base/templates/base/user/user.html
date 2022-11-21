@@ -18,21 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% comment %} <tr>
-						<td>
-							<h6 style="color: #008cba;">1</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Cut3_Guys</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Cut3 Guys in your area</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">4/10</h6>
-						</td>
-					</tr> {% endcomment %}
-					{% for user in user %}
+					{% for user in users %}
 					<tr>
 						<td>
 							<h6 style="color: #008cba;">{{user.username}}</h6>
@@ -46,6 +32,6 @@
 			</table>
 		</div>
 	</div>
-</div> 
+</div>  
 
 {% endblock content %}

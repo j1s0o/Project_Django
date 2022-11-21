@@ -33,18 +33,19 @@
 							<h6 style="color: #008cba;">4/10</h6>
 						</td>
 					</tr> {% endcomment %}
-					{% for team in team %}
+					{% for team in teams %}
 					<tr>
 						<td>
 							<h6 style="color: #008cba;">{{team.id}}</h6>
 						</td>
 						<td>
-							<h6 style="color: #008cba;">{{team.name}}</h6>
+							<a href="/team/{{team.name}}"><h6 style="color: #008cba;">{{team.name}}</h6></a>
 						</td>
 						<td>
 							<h6 style="color: #008cba;">{{team.description}}</h6>
 						</td>
 					</tr>
+				
 					{% endfor %}
 				</tbody>
 			</table>

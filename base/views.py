@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserCreationForm  
 from django.contrib.auth import authenticate as auth , login as auth_login , logout as auth_logout
 from .models import Team , Chall , UserProfile
-from .forms import TeamForm 
+from .forms import TeamForm  , UserProfileForm
 # Create your views here.
 
 def home(request):
@@ -22,11 +22,6 @@ def sponsors(request):
 
 def scoreboard(request):
     return render(request, 'base/navbar/scoreboard.html')
-
-def teams(request):
-    team  = Group.objects.all() # get all teams
-    context = {'team': team}
-    return render(request, 'base/teams/teams.html' , context)
 
 
 def chall(request ):
@@ -124,6 +119,31 @@ def logout(request):
     return redirect('home')
 
 def Users(request):
-    user = User.objects.all()
-    context = {'user': user}
-    return render(request, 'base/user/user.html', context=context)
+    users = User.objects.all()
+    context = {'users': users}
+    return render(request, 'base/user/user.html', context)
+
+def teams(request):
+    teams  = Group.objects.all() # get all teams
+    context = {'teams': teams}
+    return render(request, 'base/teams/teams.html' , context)
+
+
+def TeamProfile(request , pk):
+    team = None
+    teams = Group.objects.all()
+    for i in teams:
+        if i.name == pk:
+            team = i
+    user = []
+    users = User.objects.all()
+    for i in users:
+        if i.groups.filter(name=team).exists():
+            user.append(i.username)
+    context = {'team': team , "user" : user}
+    return render(request , 'base/teams/teamprofile.html', context)
+
+def UserProfile(request):
+    form = UserProfileForm()
+    context = {'form': form}
+    return render(request, 'base/user/userprofile.html' , context)    
