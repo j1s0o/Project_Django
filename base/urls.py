@@ -13,11 +13,12 @@ urlpatterns = [
     path('chall/pwn/', views.pwn , name='challpwn'),
     path('chall/re/', views.re , name='challre'),
     path('create_team/', views.create_team , name='create_team'),
+    path('join_team/', views.join_team , name='join_team'),
     path('update_team/<str:pk>/', views.update_team, name='update_team'),
     path('register/', views.register , name='register'),
     path('login/', views.login , name='login'),
     path('logout/', views.logout, name='logout'),
     path('users/', views.Users , name='users'),
     path('team/<str:pk>/', views.TeamProfile , name='teamprofile'),
-    path('userprofile/', views.UserProfile , name='userprofile'),
+    
 ]

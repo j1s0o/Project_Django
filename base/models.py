@@ -1,17 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User
-# Create your models here.
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import AbstractUser
+
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
 
-Group.add_to_class('description', models.CharField(max_length=180,null=True, blank=True))
-Group.add_to_class('score', models.PositiveIntegerField(default=0))
-Group.add_to_class('password', models.PositiveIntegerField(max_length=50,null=True, blank=True))
 
 
 class Team(models.Model):
     name = models.CharField(max_length=55)
     password = models.CharField(max_length=32 )
+    score = models.PositiveBigIntegerField(default=0)
+    decription = models.CharField(max_length=100 , blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -37,9 +37,8 @@ class Chall(models.Model):
     def __str__(self):
         return self.chall_name
 
-class UserProfile(models.Model):
-    username = models.OneToOneField(User , on_delete= models.CASCADE)
+class CustomUser(AbstractUser):
     score = models.PositiveIntegerField(default=0)
-    bio = models.CharField(max_length=100 , null=True, blank= True)
+    team = models.ForeignKey(Team, null=True, blank=True , on_delete= models.DO_NOTHING)
     def __str__(self):
-        return str(self.username)
+        return self.username

@@ -1,14 +1,9 @@
 from django.forms import ModelForm
-from django.contrib.auth.models import Group
-from .models import UserProfile
+from .models import Team
+
 
 class TeamForm(ModelForm):
     class Meta:
-        model = Group
+        model = Team
         fields = ['name' , 'password']
         
-class UserProfileForm(ModelForm):
-    class Meta:
-        model = UserProfile
-        fields= "__all__"
-
