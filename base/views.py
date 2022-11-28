@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate as auth , login as auth_login , logout as auth_logout
 from .models import Team , Chall , CustomUser as User
 from  .forms import TeamForm
+from json import dumps
 # Create your views here.
 
 def home(request):
@@ -30,10 +31,20 @@ def chall(request):
         pwn = Chall.objects.filter(type="Pwnable")
         re = Chall.objects.filter(type="Reverse")
         type_chall = ("Web exploit" , "Cryptography" , "Pwnable" , "Reverse")
-        context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall}
+        data = dumps(
+            [
+                {
+                    'chall_name' : obj.chall_name,
+                    'flag' : obj.flag,
+                    'point' : obj.point,
+                }
+                for obj in Chall.objects.all()
+            ]
+        )
+        context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall , 'data' : data}
     else:
         return redirect('/create_team')
-    return render(request ,  'base/chall/chall.html' , context)
+    return render(request ,  'base/chall/chall.html' , context )
 
 @login_required(login_url='login')    
 def web(request):

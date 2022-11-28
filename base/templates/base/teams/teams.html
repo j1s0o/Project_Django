@@ -13,7 +13,6 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Team Name</th>
 						<th>Bio</th>
 					</tr>
@@ -35,9 +34,6 @@
 					</tr> {% endcomment %}
 					{% for team in teams %}
 					<tr>
-						<td>
-							<h6 style="color: #008cba;">{{team.id}}</h6>
-						</td>
 						<td>
 							<a href="/team/{{team.name}}"><h6 style="color: #008cba;">{{team.name}}</h6></a>
 						</td>

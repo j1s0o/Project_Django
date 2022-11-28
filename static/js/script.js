@@ -47,10 +47,3 @@ function Clock(secValue, minValue, hourValue, dayValue) {
   }, 1000); //1000ms = 1s
 }
 
-// Multi Menu select app
-function MenuSelect() {
-
-}
-function Card() {
-  
-}

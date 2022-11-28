@@ -20,7 +20,7 @@
     {% if j.type == i %}
     <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
       <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
-        chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}">
+        chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}" >
         <img src="{{j.img}}" alt="error">
         <h5 class="card-title  mt-2 mb-2 text-center ">{{j.chall_name}}</h5>
         <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
@@ -42,43 +42,44 @@
     {% endif %}
 
     <!--Each modal when we click-->
+    
+    <form id="form-flag">  
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <h1 class="modal-title fs-5"  id="challname"></h1>
           </div>
           <div class="modal-body">
-            <!--each part os modal-->
-            <form>
+            <!--each part os modal--> 
               <div class="mb-3">
                 <h5>Decryption</h5>
-                <p class="modal-decription" id="exampleModalLabel"></p>
+                <p class="modal-decription" id="dec"></p>
               </div>
 
               <div class="mb-3">
                 <h5>Link</h5>
-                <a class="modal-link" id="exampleModalLabel" href=""></a>
+                <a class="modal-link"  href=""></a>
               </div>
               <div class="mb-3">
                 <h5>Author</h5>
-                <p class="modal-author" id="exampleModalLabel" href=""></p>
+                <p class="modal-author"  href=""></p>
               </div>
               <div class="mb-3">
                 <label for="flag" class="col-form-label">Flag:</label>
                 <input type="text" class="form-control" id="flag">
               </div>
-            </form>
+            
           </div>
           <!--two fuctions to  đóng và submit flag-->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
     </div>
-
+</form>
     <script type="text/javascript">
       const exampleModal = document.getElementById('exampleModal')
       exampleModal.addEventListener('show.bs.modal', event => {
@@ -98,14 +99,33 @@
         modaldecription.textContent = decription
         modalLink.textContent = link
         modalAuthor.textContent = author
-        
+
+        const form = document.getElementById('form-flag')
+        form.addEventListener('submit', event =>{
+            user_flag = document.getElementById('flag').value
+            var data = JSON.parse("{{data | escapejs}}")
+            for(i in data){
+              if(data[i].chall_name === chall_name)
+              {
+                if(user_flag === data[i].flag){
+                  
+                }
+                else{
+                  
+                }
+              }
+              
+            }
+            
+        })
+
+
+
       })
     </script>
-
     {% endblock content %}
 
     {% block callfunc %}
-    MenuSelect();
     Modal_Card();
     {% endblock callfunc %}
   </div>
