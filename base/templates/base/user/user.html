@@ -15,6 +15,7 @@
 					<tr>
 						<th>Name</th>
                         <th>Team</th>
+						<th>Score</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,7 +25,10 @@
 							<h6 style="color: #008cba;">{{user.username}}</h6>
 						</td>
                         <td>
-                            <h6 style="color: #008cba;">{{user.groups.get}}</h6>        
+                            <h6 style="color: #008cba;">{{user.team}}</h6>        
+                        </td>
+						<td>
+                            <h6 style="color: #008cba;">{{user.score}}</h6>        
                         </td>
 					</tr>
 					{% endfor %}

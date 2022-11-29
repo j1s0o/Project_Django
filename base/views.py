@@ -1,11 +1,12 @@
 from django.shortcuts import render , redirect
-from django.http import HttpResponse
+from django.http import JsonResponse ,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate as auth , login as auth_login , logout as auth_logout
 from .models import Team , Chall , CustomUser as User
 from  .forms import TeamForm
-from json import dumps
+from json import dumps , loads
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
@@ -41,7 +42,22 @@ def chall(request):
                 for obj in Chall.objects.all()
             ]
         )
-        context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall , 'data' : data}
+        # user_solved = dumps(
+        #     [
+        #         {
+        #         'username' : obj.username,
+        #         'score' : obj.score,
+        #         'solved' : [
+        #             {
+        #                 'solved_name' : i.chall_name
+        #             }
+        #             for i in obj.solved.all()
+        #         ]
+        #         }
+        #         for obj in User.objects.all()
+        #     ]
+        # )
+        context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall , 'data' : data }
     else:
         return redirect('/create_team')
     return render(request ,  'base/chall/chall.html' , context )
@@ -196,4 +212,16 @@ def TeamProfile(request , pk):
             user.append(i.username)
     context = {'team': team , "user" : user}
     return render(request , 'base/teams/teamprofile.html', context)
+
+@csrf_exempt
+def solved(request):
+    if request.method == 'POST':
+        data = request.body
+        score = User.objects.get(username=request.user.username).score
+        score = score + int(data)
+        User.objects.filter(username=request.user.username).update(score = score)
+        return HttpResponse(data)
+
+
+
 

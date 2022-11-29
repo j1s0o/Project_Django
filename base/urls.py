@@ -20,5 +20,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('users/', views.Users , name='users'),
     path('team/<str:pk>/', views.TeamProfile , name='teamprofile'),
+    path('chall/solved/', views.solved , name='solved'),
     
 ]

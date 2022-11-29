@@ -80,6 +80,7 @@
       </div>
     </div>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript">
       const exampleModal = document.getElementById('exampleModal')
       exampleModal.addEventListener('show.bs.modal', event => {
@@ -108,7 +109,16 @@
               if(data[i].chall_name === chall_name)
               {
                 if(user_flag === data[i].flag){
-                  
+
+                  //alert(`${chall_name} have been sovle by {{request.user.team}}`)
+                  var value = data[i].point 
+                  fetch(`/chall/solved/`,{
+                    method : 'POST',
+                    body  : value,
+                    headers : {
+                      'Content-type' : 'application/json'
+                    }
+                  }).then((res) => res.json())
                 }
                 else{
                   

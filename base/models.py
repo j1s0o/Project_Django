@@ -4,9 +4,6 @@ from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 
-
-
-
 class Team(models.Model):
     name = models.CharField(max_length=55)
     password = models.CharField(max_length=32 )
@@ -19,7 +16,8 @@ class Team(models.Model):
         ordering = ['-updated' , '-created']
     def __str__(self):
         return self.name
-
+    
+    
 class Chall(models.Model):
     list = (('Web exploit' , 'Web') , ('Cryptography', 'Crypto') , ('Pwnable','Pwn') , ('Reverse','Re'))
     chall_id = models.IntegerField(blank = True , default= 1)
@@ -33,11 +31,13 @@ class Chall(models.Model):
     point = models.IntegerField(default=0)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    team_solved = models.ManyToManyField(Team , null=True, blank=True)
     
     def __str__(self):
         return self.chall_name
-
+    
 class CustomUser(AbstractUser):
+    solved = models.ManyToManyField(Chall , null=True , blank=True)
     score = models.PositiveIntegerField(default=0)
     team = models.ForeignKey(Team, null=True, blank=True , on_delete= models.DO_NOTHING)
     def __str__(self):
