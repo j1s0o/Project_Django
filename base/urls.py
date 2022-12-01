@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path , re_path
 from . import views
 
 urlpatterns = [
@@ -7,11 +7,7 @@ urlpatterns = [
     path('sponsors/' , views.sponsors , name='sponsors'),
     path('scoreboard/' , views.scoreboard , name='scoreboard'),
     path('team/', views.teams , name='team'),
-    path('chall/', views.chall , name='chall'),
-    path('chall/web/', views.web , name='challweb'),
-    path('chall/crypto/', views.crypto , name='challcrypto'),
-    path('chall/pwn/', views.pwn , name='challpwn'),
-    path('chall/re/', views.re , name='challre'),
+    path('chall/<str:pk>/', views.chall , name='chall'),
     path('create_team/', views.create_team , name='create_team'),
     path('join_team/', views.join_team , name='join_team'),
     path('update_team/<str:pk>/', views.update_team, name='update_team'),
@@ -20,6 +16,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('users/', views.Users , name='users'),
     path('team/<str:pk>/', views.TeamProfile , name='teamprofile'),
-    path('chall/solved/', views.solved , name='solved'),
     
 ]

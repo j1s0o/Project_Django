@@ -1,14 +1,12 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block header_text %}
-{% if request.path == "/chall/" %}<span class="text">Challenge</span>
-{% else %}{% endif %}
-{% block header_chall %}{% endblock header_chall %}
+<span class="text">Challenge</span>
 {% endblock header_text %}
 
 {% block content %}
 
-{% if request.path == "/chall/" %}
+{% if request.path == "/chall/all/" %}
 
 <!--Use the loop to clarify each category-->
 {% for i in type_chall %}
@@ -32,13 +30,65 @@
 
     <!--when access each ctf's category-->
     {% elif request.path == "/chall/web/" %}
-    {% block web_category %}{% endblock web_category %}
+    <h2 style="text-align : center">Web Exploit</h2>
+    <div class="container mt-1">
+      <div class="row">
+        {% for i in chall %}
+        <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}">
+            <img src="{{i.img}}" alt="Photo of sunset">
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
+          </div>
+        </div>
+    {% endfor %}
+
+
     {% elif request.path == "/chall/crypto/" %}
-    {% block crypto_category %}{% endblock crypto_category %}
+    
+    <h2 style="text-align : center">Cryptography</h2>
+    <div class="container mt-1">
+      <div class="row">
+        {% for i in chall %}
+        <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}">
+            <img src="{{i.img}}" alt="Photo of sunset">
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
+          </div>
+        </div>
+    {% endfor %}
+    
     {% elif request.path == "/chall/pwn/"%}
-    {% block pwn_category %}{% endblock pwn_category %}
+    
+    <h2 style="text-align : center">Pwnable</h2>
+    <div class="container mt-1">
+      <div class="row">
+        {% for i in chall %}
+        <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}">
+            <img src="{{i.img}}" alt="Photo of sunset">
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
+          </div>
+        </div>
+    {% endfor %}
+
     {% elif request.path == "/chall/re/"%}
-    {%block re_category %}{% endblock re_category %}
+    
+    <h2 style="text-align : center">Reverse</h2>
+    <div class="container mt-1">
+      <div class="row">
+        {% for i in chall %}
+        <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}">
+            <img src="{{i.img}}" alt="Photo of sunset">
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
+          </div>
+        </div>
+    {% endfor %}
+
     {% endif %}
 
     <!--Each modal when we click-->
@@ -100,7 +150,7 @@
         modaldecription.textContent = decription
         modalLink.textContent = link
         modalAuthor.textContent = author
-        
+
         const form = document.getElementById('form-flag')
         form.addEventListener('submit', event =>{
             user_flag = document.getElementById('flag').value
@@ -114,7 +164,7 @@
                   var value = {
                     'point' : data[i].point,
                     'chall_name' : chall_name
-                  } 
+                  }
                   fetch(`/chall/solved/`,{
                     method : 'POST',
                     body  : JSON.stringify(value),

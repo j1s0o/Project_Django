@@ -24,40 +24,53 @@ def scoreboard(request):
     return render(request, 'base/navbar/scoreboard.html')
 
 @login_required(login_url='login')
-def chall(request):
+@csrf_exempt
+def chall(request , pk):
     if request.user.team is not None:
-        chall = Chall.objects.all() # get all
-        web = Chall.objects.filter(type="Web exploit")
-        crypto = Chall.objects.filter(type="Cryptography")
-        pwn = Chall.objects.filter(type="Pwnable")
-        re = Chall.objects.filter(type="Reverse")
-        type_chall = ("Web exploit" , "Cryptography" , "Pwnable" , "Reverse")
-        data = dumps(
-            [
-                {
-                    'chall_name' : obj.chall_name,
-                    'flag' : obj.flag,
-                    'point' : obj.point,
-                }
-                for obj in Chall.objects.all()
-            ]
-        )
-        # user_solved = dumps(
-        #     [
-        #         {
-        #         'username' : obj.username,
-        #         'score' : obj.score,
-        #         'solved' : [
-        #             {
-        #                 'solved_name' : i.chall_name
-        #             }
-        #             for i in obj.solved.all()
-        #         ]
-        #         }
-        #         for obj in User.objects.all()
-        #     ]
-        # )
-        context = {'chall' : chall , 'web' : web , 'crypto' : crypto , 'pwn' : pwn , 're' : re , 'type_chall' : type_chall , 'data' : data }
+        if request.method == 'GET':
+            type_chall = ("Web exploit" , "Cryptography" , "Pwnable" , "Reverse")
+            if pk == "all":
+                chall = Chall.objects.all() # get all
+            elif pk == "web":
+                chall = Chall.objects.filter(type="Web exploit")
+            elif pk == "crypto":
+                chall = Chall.objects.filter(type="Cryptography")
+            elif pk == "pwn":
+                chall = Chall.objects.filter(type="Pwnable")
+            elif pk == "re":
+                chall = Chall.objects.filter(type="Reverse")
+            data = dumps(
+                [
+                    {
+                        'chall_name' : obj.chall_name,
+                        'flag' : obj.flag,
+                        'point' : obj.point,
+                    }
+                    for obj in Chall.objects.all()
+                ]
+            )
+            context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data }
+        elif request.method == 'POST' and pk =='solved':
+            data = request.body
+            data = loads(data)
+            team = request.user.team
+            point = data['point']
+            chall_name = data['chall_name']
+            chall = Chall.objects.get(chall_name = chall_name)
+            user = User.objects.get(username = request.user.username)
+            # team = chall.team_solved.all()[0]
+            team_solved = chall.team_solved.filter(name = team)
+            if team_solved.exists():
+                context = {'msg' : 'false'}
+                return JsonResponse(context)
+            else:
+                score = User.objects.get(username = request.user.username).score
+                score = point + score
+                User.objects.filter(username = request.user.username).update(score=score)
+                user.solved.add(chall)
+                chall.team_solved.add(team)
+                context = {'msg' : 'done'}
+                return JsonResponse(context)
     else:
         return redirect('/create_team')
     return render(request ,  'base/chall/chall.html' , context )
@@ -66,7 +79,18 @@ def chall(request):
 def web(request):
     if request.user.team is not None:
         web = Chall.objects.filter(type="Web exploit")
-        context = {'web': web}
+        
+        data = dumps(
+        [
+            {
+                    'chall_name' : obj.chall_name,
+                    'flag' : obj.flag,
+                    'point' : obj.point,
+            }
+            for obj in Chall.objects.all()
+        ]
+        )
+        context = {'web': web , 'data' : data}
     else:
         return redirect('/create_team')
     return render(request, 'base/chall/web.html', context)
@@ -213,28 +237,28 @@ def TeamProfile(request , pk):
     context = {'team': team , "user" : user}
     return render(request , 'base/teams/teamprofile.html', context)
 
-@csrf_exempt
-def solved(request):
-    if request.method == 'POST':
-        data = request.body
-        data = loads(data)
-        team = request.user.team
-        point = data['point']
-        chall_name = data['chall_name']
-        chall = Chall.objects.get(chall_name = chall_name)
-        user = User.objects.get(username = request.user.username)
-        # team = chall.team_solved.all()[0]
-        team_solved = chall.team_solved.filter(name = team)
-        if team_solved.exists():
-            result = "false"
-        else:
-            score = User.objects.get(username = request.user.username).score
-            score = point + score
-            User.objects.filter(username = request.user.username).update(score=score)
-            user.solved.add(chall)
-            chall.team_solved.add(team)
-            result = "done"
-        return JsonResponse(result)
+# @csrf_exempt
+# def solved(request ):
+#     if request.method == 'POST':
+#         data = request.body
+#         data = loads(data)
+#         team = request.user.team
+#         point = data['point']
+#         chall_name = data['chall_name']
+#         chall = Chall.objects.get(chall_name = chall_name)
+#         user = User.objects.get(username = request.user.username)
+#         # team = chall.team_solved.all()[0]
+#         team_solved = chall.team_solved.filter(name = team)
+#         if team_solved.exists():
+#             result = "false"
+#         else:
+#             score = User.objects.get(username = request.user.username).score
+#             score = point + score
+#             User.objects.filter(username = request.user.username).update(score=score)
+#             user.solved.add(chall)
+#             chall.team_solved.add(team)
+#             result = "done"
+#         return JsonResponse(result )
     
 
 
