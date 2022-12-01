@@ -43,7 +43,6 @@ def chall(request , pk):
                 [
                     {
                         'chall_name' : obj.chall_name,
-                        'flag' : obj.flag,
                         'point' : obj.point,
                         'team_solved' : [
                             {
@@ -52,11 +51,10 @@ def chall(request , pk):
                             for i in obj.team_solved.filter(name = request.user.team)
                         ]
                     }
-                    for obj in Chall.objects.all()
+                    for obj in chall
                 ]
             )
-
-            context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data }
+            
         elif request.method == 'POST' and pk =='solved':
             data = request.body
             data = loads(data)
@@ -70,7 +68,7 @@ def chall(request , pk):
             if team_solved.exists():
                 context = {'msg' : 'false'}
                 return JsonResponse(context)
-            else:
+            elif data['user_flag'] == chall.flag:
                 score = User.objects.get(username = request.user.username).score
                 score = point + score
                 User.objects.filter(username = request.user.username).update(score=score)
@@ -82,6 +80,7 @@ def chall(request , pk):
                 return JsonResponse(context)
     else:
         return redirect('/create_team')
+    context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data }
     return render(request ,  'base/chall/chall.html' , context )
 
 
@@ -193,11 +192,12 @@ def TeamProfile(request , pk):
         if i.name == pk:
             team = i
     user = []
+    solved = []
     users = User.objects.all()
     for i in users:
         if i.team == team:
-            user.append(i.username)
-    context = {'team': team , "user" : user}
+            user.append(i)
+    context = {'team': team , "user" : user }
     return render(request , 'base/teams/teamprofile.html', context)
 
 # @csrf_exempt

@@ -1,7 +1,14 @@
 {% extends 'main.html' %}
  {% block content %}
-<h1>{{team}}</h1>
+<h1>{{team}} --------- {{team.score}}</h1>
+
 {% for i in user %}
-<h1>{{i}}</h1>
+{{i.username}} ++++ {{i.score}}
+
+{% for j in i.solved.all %}
+{{j}}
+
+{% endfor %}</br>
 {% endfor %}
+
 {% endblock content%}
