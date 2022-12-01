@@ -190,11 +190,12 @@
       var data = JSON.parse("{{data | escapejs}}")
       for (i in data) {
         var team_solved = data[i].team_solved
-        if(team_solved === undefined)
+        if(team_solved != '')
         {
+          document.getElementById(data[i].chall_name).innerHTML = `<strike>${data[i].chall_name}</strike>`
         }
         else{
-          document.getElementById(data[i].chall_name).innerHTML = `<strike>${data[i].chall_name}</strike>`
+
         }
       } 
     </script>
