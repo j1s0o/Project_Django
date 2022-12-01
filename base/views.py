@@ -23,8 +23,8 @@ def sponsors(request):
 def scoreboard(request):
     return render(request, 'base/navbar/scoreboard.html')
 
-@login_required(login_url='login')
 @csrf_exempt
+@login_required(login_url='login')
 def chall(request , pk):
     if request.user.team is not None:
         if request.method == 'GET':
@@ -75,52 +75,6 @@ def chall(request , pk):
         return redirect('/create_team')
     return render(request ,  'base/chall/chall.html' , context )
 
-@login_required(login_url='login')    
-def web(request):
-    if request.user.team is not None:
-        web = Chall.objects.filter(type="Web exploit")
-        
-        data = dumps(
-        [
-            {
-                    'chall_name' : obj.chall_name,
-                    'flag' : obj.flag,
-                    'point' : obj.point,
-            }
-            for obj in Chall.objects.all()
-        ]
-        )
-        context = {'web': web , 'data' : data}
-    else:
-        return redirect('/create_team')
-    return render(request, 'base/chall/web.html', context)
-
-@login_required(login_url='login')
-def crypto(request):
-    if request.user.team is not None:
-        crypto = Chall.objects.filter(type="Cryptography")
-        context = {'crypto': crypto}
-    else:
-        return redirect('/create_team')
-    return render(request, 'base/chall/crypto.html', context)
-
-@login_required(login_url='login')
-def pwn(request):
-    if request.user.team is not None:
-        pwn = Chall.objects.filter(type="Pwnable")
-        context = {'pwn': pwn}
-    else:
-        return redirect('/create_team')
-    return render(request, 'base/chall/pwn.html', context)
-
-@login_required(login_url='login')
-def re(request):
-    if request.user.team is not None:
-        re = Chall.objects.filter(type="Reverse")
-        context = {'re': re}
-    else:
-        return redirect('/create_team')
-    return render(request, 'base/chall/re.html', context)
 
 @login_required(login_url='login')
 def create_team(request):
@@ -135,7 +89,7 @@ def create_team(request):
                 form.save()
                 team = Team.objects.get(name = form.cleaned_data['name'])
                 User.objects.filter(username = request.user.username).update(team=team)
-                return redirect('chall')
+                return redirect('/chall/all/')
     return render(request, 'base/teams/create_team.html' , context) 
 
 @login_required(login_url='login')
@@ -148,7 +102,7 @@ def join_team(request):
         if  Team.objects.filter(name = form.cleaned_data['name'] , password=form.cleaned_data['password']).exists():
             team = Team.objects.get(name = form.cleaned_data['name'])
             User.objects.filter(username = request.user.username).update(team=team)
-            return redirect('/chall')
+            return redirect('/chall/all/')
         else:
             messages.error(request,'Your team\'s password is incorrect , if you don\'t have team please create')
     return render(request, 'base/teams/join_team.html' , context)
@@ -160,7 +114,7 @@ def update_team(request , pk):
         form = TeamForm(request.POST, instance=team)
         if form.is_valid():
             form.save()
-            return redirect('chall')
+            return redirect('/chall/all/')
     context = {'form': form}
     return render(request, 'base/teams/create_team.html', context)
 
@@ -182,7 +136,7 @@ def register(request ):
                 user = User.objects.create_user(username , password , email)
                 user.save()
                 auth_login(request, user)
-                return redirect('chall')
+                return redirect('create_team')
             except:
                 messages.error(request, 'Something missing or invalid')
                 return redirect('register')
@@ -200,7 +154,7 @@ def login(request):
             user = auth(request , username=username, password=password)        
         if user is not None :
             auth_login(request, user)
-            return redirect('chall')
+            return redirect('/chall/all/')
         else:
             messages.error(request, "Invalid username or password!!!")
 
