@@ -20,7 +20,7 @@
       <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
         chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}" >
         <img src="{{j.img}}" alt="error">
-        <h5 class="card-title  mt-2 mb-2 text-center " id="chall_name">{{j.chall_name}}</h5>
+        <h5 class="card-title  mt-2 mb-2 text-center " id='{{j.chall_name}}'>{{j.chall_name}}</h5>
         <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
       </div>
     </div>
@@ -35,9 +35,9 @@
       <div class="row">
         {% for i in chall %}
         <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
-          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}  chall-author="{{i.author}}"">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}"  chall-author="{{i.author}}">
             <img src="{{i.img}}" alt="Photo of sunset">
-            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center" >{{i.chall_name}}</h5>
             <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
           </div>
         </div>
@@ -66,7 +66,7 @@
       <div class="row">
         {% for i in chall %}
         <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
-          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}  chall-author="{{i.author}}"">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}"  chall-author="{{i.author}}">
             <img src="{{i.img}}" alt="Photo of sunset">
             <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
             <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
@@ -81,7 +81,7 @@
       <div class="row">
         {% for i in chall %}
         <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
-          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}  chall-author="{{i.author}}"">
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}"  chall-author="{{i.author}}">
             <img src="{{i.img}}" alt="Photo of sunset">
             <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
             <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
@@ -132,6 +132,19 @@
 </form>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript">
+      var data = JSON.parse("{{data | escapejs}}")
+      
+       for ( i in data) {
+        var team_solved = data[i].team_solved
+        if (team_solved != '')
+        {
+          document.getElementById(data[i].chall_name).innerHTML = `<strike>${data[i].chall_name}</strike>`
+        }
+        else
+        {
+        }
+      } 
+
       const exampleModal = document.getElementById('exampleModal')
       exampleModal.addEventListener('show.bs.modal', event => {
         // Button that triggered the modal
@@ -151,13 +164,14 @@
         modalLink.textContent = link
         modalAuthor.textContent = author
 
+
         const form = document.getElementById('form-flag')
         form.addEventListener('submit', event =>{
             user_flag = document.getElementById('flag').value
-            var data = JSON.parse("{{data | escapejs}}")
             for(i in data){
               if(data[i].chall_name === chall_name)
               {
+                
                 if(user_flag === data[i].flag){
 
                   //alert(`${chall_name} have been sovle by {{request.user.team}}`)

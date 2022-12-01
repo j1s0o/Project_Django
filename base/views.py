@@ -45,10 +45,17 @@ def chall(request , pk):
                         'chall_name' : obj.chall_name,
                         'flag' : obj.flag,
                         'point' : obj.point,
+                        'team_solved' : [
+                            {
+                                'team_name' : i.name
+                            }
+                            for i in obj.team_solved.filter(name = request.user.team)
+                        ]
                     }
                     for obj in Chall.objects.all()
                 ]
             )
+
             context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data }
         elif request.method == 'POST' and pk =='solved':
             data = request.body
@@ -69,6 +76,8 @@ def chall(request , pk):
                 User.objects.filter(username = request.user.username).update(score=score)
                 user.solved.add(chall)
                 chall.team_solved.add(team)
+                team_score = Team.objects.get(name=team).score + point
+                Team.objects.filter(name=team).update(score=team_score)
                 context = {'msg' : 'done'}
                 return JsonResponse(context)
     else:
@@ -167,12 +176,12 @@ def logout(request):
     return redirect('home')
 
 def Users(request):
-    users = User.objects.all()
+    users = User.objects.all().order_by('-score')
     context = {'users': users}
     return render(request, 'base/user/user.html', context)
 
 def teams(request):
-    teams  = Team.objects.all() # get all teams
+    teams  = Team.objects.all().order_by("-score") # get all teams
     context = {'teams': teams}
     return render(request, 'base/teams/teams.html' , context)
 
