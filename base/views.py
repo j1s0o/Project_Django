@@ -208,7 +208,7 @@ def TeamProfile(request , pk):
     user = []
     users = User.objects.all()
     for i in users:
-        if i.team.filter(name=team).exists():
+        if i.team == team:
             user.append(i.username)
     context = {'team': team , "user" : user}
     return render(request , 'base/teams/teamprofile.html', context)
@@ -217,10 +217,25 @@ def TeamProfile(request , pk):
 def solved(request):
     if request.method == 'POST':
         data = request.body
-        score = User.objects.get(username=request.user.username).score
-        score = score + int(data)
-        User.objects.filter(username=request.user.username).update(score = score)
-        return HttpResponse(data)
+        data = loads(data)
+        team = request.user.team
+        point = data['point']
+        chall_name = data['chall_name']
+        chall = Chall.objects.get(chall_name = chall_name)
+        user = User.objects.get(username = request.user.username)
+        # team = chall.team_solved.all()[0]
+        team_solved = chall.team_solved.filter(name = team)
+        if team_solved.exists():
+            result = "false"
+        else:
+            score = User.objects.get(username = request.user.username).score
+            score = point + score
+            User.objects.filter(username = request.user.username).update(score=score)
+            user.solved.add(chall)
+            chall.team_solved.add(team)
+            result = "done"
+        return JsonResponse(result)
+    
 
 
 

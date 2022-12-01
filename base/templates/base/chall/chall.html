@@ -54,7 +54,7 @@
             <!--each part os modal--> 
               <div class="mb-3">
                 <h5>Decryption</h5>
-                <p class="modal-decription" id="dec"></p>
+                <p class="modal-decription"></p>
               </div>
 
               <div class="mb-3">
@@ -100,7 +100,7 @@
         modaldecription.textContent = decription
         modalLink.textContent = link
         modalAuthor.textContent = author
-
+        
         const form = document.getElementById('form-flag')
         form.addEventListener('submit', event =>{
             user_flag = document.getElementById('flag').value
@@ -111,13 +111,16 @@
                 if(user_flag === data[i].flag){
 
                   //alert(`${chall_name} have been sovle by {{request.user.team}}`)
-                  var value = data[i].point 
+                  var value = {
+                    'point' : data[i].point,
+                    'chall_name' : chall_name
+                  } 
                   fetch(`/chall/solved/`,{
                     method : 'POST',
-                    body  : value,
+                    body  : JSON.stringify(value),
                     headers : {
                       'Content-type' : 'application/json'
-                    }
+                    } 
                   }).then((res) => res.json())
                 }
                 else{
