@@ -9,6 +9,8 @@
 	<div class="container">
 		<div id="score">
 			<div class="table-responsive">
+				<div class="line_graph"  >
+					<img  class="img-fluid" src="{% static '\images\scoreboard.jpg' %}" alt="Scoreboard not found" >
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -16,21 +18,6 @@
 							<th>Score</th>
 						</tr>
 					</thead>
-					<tbody>
-						{% comment %} <tr>
-							<td>
-								<h6 style="color: #008cba;">1</h6>
-							</td>
-							<td>
-								<h6 style="color: #008cba;">Cut3_Guys</h6>
-							</td>
-							<td>
-								<h6 style="color: #008cba;">Cut3 Guys in your area</h6>
-							</td>
-							<td>
-								<h6 style="color: #008cba;">4/10</h6>
-							</td>
-						</tr> {% endcomment %}
 						{% for team in teams %}
 						<tr>
 							<td>
@@ -40,7 +27,6 @@
 								<h6 style="color: #008cba;">{{team.score}}</h6>
 							</td>
 						</tr>
-					
 						{% endfor %}
 					</tbody>
 				</table>

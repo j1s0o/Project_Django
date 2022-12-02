@@ -5,6 +5,7 @@
 {% endblock header_text %}
 
 {% block content %}
+
 {% if request.path == "/chall/all/" %}
 
 <!--Use the loop to clarify each category-->
@@ -15,12 +16,12 @@
     <h2 style="text-align : center">{{i}}</h2>
     {% for j in chall %}
     {% if j.type == i %}
-    <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
+    <div class="col-md-2 col-sm-6" style="padding:30px 20px;" id="{{j.id}}">
       <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
         chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}" >
         <img src="{{j.img}}" alt="error" id='{{j.chall_name}}_img'>
         <h5 class="card-title  mt-2 mb-2 text-center " id='{{j.chall_name}}'>{{j.chall_name}}</h5>
-        <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
+        <h5 class="card-title  mt-2 mb-2 text-center" id='{{j.point}}'>{{j.point}} points</h5>
       </div>
     </div>
     {% endif %}
@@ -192,8 +193,15 @@
         var team_solved = data[i].team_solved
         if(team_solved != '')
         {
-          document.getElementById(data[i].chall_name).innerHTML = `<strike>${data[i].chall_name}</strike>`
-          document.getElementById(`${data[i].chall_name}_img`).style.filter = 'blur(2px)'
+          document.getElementById(data[i].chall_name).innerHTML = `<strike style='color: green;'>${data[i].chall_name}</strike>`
+          document.getElementById(data[i].point).innerHTML = `<strike style='color: green;'>${data[i].point}</strike>`
+          document.getElementById(`${data[i].chall_name}_img`).style.borderColor = 'transparent';
+          document.getElementById(`${data[i].chall_name}_img`).style.border = '8px solid';
+          document.getElementById(`${data[i].chall_name}_img`).style.borderColor = 'green';
+
+          
+          
+          
         }
         else{
           

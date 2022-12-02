@@ -1,8 +1,58 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %}
+{% block content %}
 
-<h1>username : {{user.username }} -------team : {{user.team}} -------score :  {{user.score}}</h1>
-{% for i in user.solved.all %}
-<h2>{{i}}</h2>
-{% endfor %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="img-thumbnail"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <br class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Username: <SPAN STYLE="font-weight:bold">{{user.username}}</SPAN> </h4>
+                <br class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Team: <SPAN STYLE="font-weight:bold">{{user.team}}</SPAN> </h4>
+                <br class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Scores: <SPAN STYLE="font-weight:bold">{{user.score}}</SPAN></h4>
+                <br>
+                <h4 class="text-right">Quote: <SPAN STYLE="font-weight:bold;color:#FF1493">CTF is great!</SPAN></h4>
+                <br>
+                
+            </div>
+            <div class="row mt-2">
+              
+            </div>
 
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <h4>Solved</h4>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Challenge</th>
+                    <th scope="col">Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in user.solved.all %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.chall_name}}</td>
+                    <td>{{i.point}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
 {% endblock content %}
