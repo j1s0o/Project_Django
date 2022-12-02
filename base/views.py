@@ -21,7 +21,10 @@ def sponsors(request):
     return render(request, 'base/navbar/sponsors.html')
 
 def scoreboard(request):
-    return render(request, 'base/navbar/scoreboard.html')
+    teams  = Team.objects.all().order_by("-score") # get all teams
+    context = {'teams': teams}
+    return render(request, 'base/navbar/scoreboard.html' , context)
+
 
 @csrf_exempt
 @login_required(login_url='login')
@@ -180,9 +183,10 @@ def Users(request):
     return render(request, 'base/user/user.html', context)
 
 def teams(request):
-    teams  = Team.objects.all().order_by("-score") # get all teams
+    teams  = Team.objects.all() # get all teams
     context = {'teams': teams}
     return render(request, 'base/teams/teams.html' , context)
+
 
 
 def TeamProfile(request , pk):
@@ -192,7 +196,7 @@ def TeamProfile(request , pk):
         if i.name == pk:
             team = i
     user = []
-    solved = []
+
     users = User.objects.all()
     for i in users:
         if i.team == team:
@@ -200,30 +204,8 @@ def TeamProfile(request , pk):
     context = {'team': team , "user" : user }
     return render(request , 'base/teams/teamprofile.html', context)
 
-# @csrf_exempt
-# def solved(request ):
-#     if request.method == 'POST':
-#         data = request.body
-#         data = loads(data)
-#         team = request.user.team
-#         point = data['point']
-#         chall_name = data['chall_name']
-#         chall = Chall.objects.get(chall_name = chall_name)
-#         user = User.objects.get(username = request.user.username)
-#         # team = chall.team_solved.all()[0]
-#         team_solved = chall.team_solved.filter(name = team)
-#         if team_solved.exists():
-#             result = "false"
-#         else:
-#             score = User.objects.get(username = request.user.username).score
-#             score = point + score
-#             User.objects.filter(username = request.user.username).update(score=score)
-#             user.solved.add(chall)
-#             chall.team_solved.add(team)
-#             result = "done"
-#         return JsonResponse(result )
-    
 
-
-
-
+def UserProfile(request , pk):
+    user = User.objects.get(username=pk)
+    context = {'user': user}
+    return render(request , 'base/user/userprofile.html' , context)

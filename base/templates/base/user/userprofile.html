@@ -1,51 +1,8 @@
 {% extends 'main.html' %} {% block content %}
-<style>
-  body {
-    max-width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-</style>
-<div class="row d-flex justify-content-center align-items-center">
-  <div class="col-lg-12 col-xl-11">
-    <div class="row justify-content-center">
-      <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-          Create Teams
-        </p>
 
-        <form method="POST" action="" class="mx-1 mx-md-4">
-          {% csrf_token %}
-          {% comment %} <div class="d-flex flex-row align-items-center mb-4">
-            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-            <div class="form-outline flex-fill mb-0">
-              <input type="text" id="team_name" name="name" class="form-control"/>
-              <label class="form-label" for="team_name">{{form.username.label}}</label>
-            </div>
-          </div>
-
-          <div class="d-flex flex-row align-items-center mb-4">
-            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-            <div class="form-outline flex-fill mb-0">
-              <input type="password" id="team_password" name ="password"class="form-control"  />
-              <label class="form-label" for="team_password">{{form.team.label}}</label>
-            </div>
-          </div>
-
-          <div class="d-flex flex-row align-items-center mb-4">
-            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-            <div class="alert alert-danger" role="alert">
-              After creating your team, share the team name and password with your teammates so they can join your team.
-            </div>
-          </div>  {% endcomment %}
-          {{form}}
-          <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <button type="submit" class="btn btn-dark btn-lg" value="Submit">Create</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<h1>username : {{user.username }} -------team : {{user.team}} -------score :  {{user.score}}</h1>
+{% for i in user.solved.all %}
+<h2>{{i}}</h2>
+{% endfor %}
 
 {% endblock content %}

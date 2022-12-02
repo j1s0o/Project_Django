@@ -86,8 +86,9 @@
           <!--<img src="image/profile.jpg" alt="profileImg">-->
         </div>
         <div class="name-job">
-          <div class="profile_name">{{request.user.username}}</div>
-          <div class="job">{{request.user.team}}</div>
+          <div class="profile_name" id="profile_name">{{request.user.username}}</div>
+          <a href="/team/{{request.user.team}}">
+          <span class="job" style="text-align : center;">{{request.user.team}}</span></a>
         </div>
         <a href ="/logout"><i class='bx bx-log-out' ></i></a>
       </div>

@@ -6,113 +6,45 @@
 {% endblock header_text %}
 
 {% block content %}
-<div class="container">
-	<!--Line graph scoreboard-->
-	<div class="line_graph">
-		<img class="img-fluid" src="{% static '\images\scoreboard.jpg' %}" alt="Scoreboard not found">
-	</div>
-
-	<!--Team scoreboard-->
-	<div id="score">
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Rank</th>
-						<th>Team Name</th>
-						<th>Points</th>
-						<th>Team Solves</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">1</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Cut3_Guys</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">350</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">6</h6>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">2</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Fan_thay_Dung~20_nam</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">250</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">5</h6>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">3</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Purfect</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">150</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">4</h6>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">4</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">SOT</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">50</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">3</h6>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">5</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">b1t5_Grew</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">20</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">2</h6>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h6 style="color: #008cba;">6</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">UIT_winner_-_ko_top_1_ban_truong</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">0</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">0</h6>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+	<div class="container">
+		<div id="score">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Team Name</th>
+							<th>Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% comment %} <tr>
+							<td>
+								<h6 style="color: #008cba;">1</h6>
+							</td>
+							<td>
+								<h6 style="color: #008cba;">Cut3_Guys</h6>
+							</td>
+							<td>
+								<h6 style="color: #008cba;">Cut3 Guys in your area</h6>
+							</td>
+							<td>
+								<h6 style="color: #008cba;">4/10</h6>
+							</td>
+						</tr> {% endcomment %}
+						{% for team in teams %}
+						<tr>
+							<td>
+								<a href="/team/{{team.name}}"><h6 style="color: #008cba;">{{team.name}}</h6></a>
+							</td>
+							<td>
+								<h6 style="color: #008cba;">{{team.score}}</h6>
+							</td>
+						</tr>
+					
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-</div>
 
 {% endblock content %}
