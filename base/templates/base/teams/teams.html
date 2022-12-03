@@ -3,8 +3,6 @@
 <span class="text">Teams</span>
 {% endblock header_text %}
 
-
-
 {% block content %}
 <!--<a href="{% url 'create_team' %}"> U don't have team ??? </a>-->
 <div class="container">
@@ -15,25 +13,10 @@
 					<tr>
 						<th>Team Name</th>
 						<th>Bio</th>
-
 					</tr>
 				</thead>
 				<tbody>
-					{% comment %} <tr>
-						<td>
-							<h6 style="color: #008cba;">1</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Cut3_Guys</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">Cut3 Guys in your area</h6>
-						</td>
-						<td>
-							<h6 style="color: #008cba;">4/10</h6>
-						</td>
-					</tr> {% endcomment %}
-					{% for team in teams %}
+					{% for team in page_obj %}
 					<tr>
 						<td>
 							<a href="/team/{{team.name}}"><h6 style="color: #008cba;">{{team.name}}</h6></a>
@@ -41,14 +24,31 @@
 						<td>
 							<h6 style="color: #008cba;">{{team.description}}</h6>
 						</td>
-
 					</tr>
-				
 					{% endfor %}
 				</tbody>
 			</table>
+			<div class="pagination">
+				<span class="step-links">
+					{% if page_obj.has_previous %}
+						<a href="?page=1">&laquo; first</a>
+						<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+					{% endif %}
+			
+					<span class="current">
+						Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+					</span>
+			
+					{% if page_obj.has_next %}
+						<a href="?page={{ page_obj.next_page_number }}">next</a>
+						<a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+					{% endif %}
+				</span>
+			</div>
 		</div>
+		
 	</div>
+	
 </div> 
 
 {% endblock content %}

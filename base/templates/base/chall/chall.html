@@ -33,7 +33,7 @@
     <h2 style="text-align : center">Web Exploit</h2>
     <div class="container mt-1">
       <div class="row">
-        {% for j in chall %}
+        {% for j in page_obj %}
         <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
           <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
             chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}" >
@@ -42,7 +42,25 @@
             <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
           </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+      
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+      
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
+        
 
 
     {% elif request.path == "/chall/crypto/" %}
@@ -121,7 +139,6 @@
                 <label for="flag" class="col-form-label">Flag:</label>
                 <input type="text" class="form-control" id="flag">
               </div>
-            
           </div>
           <!--two fuctions to  đóng và submit flag-->
           <div class="modal-footer">
@@ -134,8 +151,7 @@
 </form>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript">
-
-
+      
       const exampleModal = document.getElementById('exampleModal')
       exampleModal.addEventListener('show.bs.modal', event => {
         // Button that triggered the modal
@@ -155,7 +171,6 @@
         modalLink.textContent = link
         modalAuthor.textContent = author
 
-
         const form = document.getElementById('form-flag')
         form.addEventListener('submit', event =>{
             var data = JSON.parse("{{data | escapejs}}")
@@ -163,8 +178,6 @@
             for(i in data){
               if(data[i].chall_name === chall_name)
               {
-                
-
                   //alert(`${chall_name} have been sovle by {{request.user.team}}`)
                   var value = {
                     'point' : data[i].point,
@@ -178,15 +191,9 @@
                       'Content-type' : 'application/json'
                     } 
                   }).then((res) => res.json())
-                }
- 
-              
-            }
-            
+                }         
+            } 
         })
-
-
-
       })
       var data = JSON.parse("{{data | escapejs}}")
       for (i in data) {
@@ -198,10 +205,6 @@
           document.getElementById(`${data[i].chall_name}_img`).style.borderColor = 'transparent';
           document.getElementById(`${data[i].chall_name}_img`).style.border = '8px solid';
           document.getElementById(`${data[i].chall_name}_img`).style.borderColor = 'green';
-
-          
-          
-          
         }
         else{
           

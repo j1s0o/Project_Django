@@ -7,6 +7,10 @@ from .models import Team , Chall , CustomUser as User
 from  .forms import TeamForm
 from json import dumps , loads
 from django.views.decorators.csrf import csrf_exempt
+
+#Paginator 
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 def home(request):
@@ -22,9 +26,12 @@ def sponsors(request):
 
 def scoreboard(request):
     teams  = Team.objects.all().order_by("-score") # get all teams
-    context = {'teams': teams}
-    return render(request, 'base/navbar/scoreboard.html' , context)
+    paginator = Paginator(teams, 15) # Show 15 team per page.
 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'teams': teams,'page_obj': page_obj}
+    return render(request, 'base/navbar/scoreboard.html' , context)
 
 @csrf_exempt
 @login_required(login_url='login')
@@ -34,14 +41,35 @@ def chall(request , pk):
             type_chall = ("Web exploit" , "Cryptography" , "Pwnable" , "Reverse")
             if pk == "all":
                 chall = Chall.objects.all() # get all
+                paginator = Paginator(chall, 12) # Show 12 contacts per page.
+
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
             elif pk == "web":
                 chall = Chall.objects.filter(type="Web exploit")
+                paginator = Paginator(chall, 12) # Show 12 contacts per page.
+
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
+                #return render(request, 'list.html', {'page_obj': page_obj})
             elif pk == "crypto":
                 chall = Chall.objects.filter(type="Cryptography")
+                paginator = Paginator(chall, 12) # Show 12 contacts per page.
+
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
             elif pk == "pwn":
                 chall = Chall.objects.filter(type="Pwnable")
+                paginator = Paginator(chall, 12) # Show 12 contacts per page.
+
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
             elif pk == "re":
                 chall = Chall.objects.filter(type="Reverse")
+                paginator = Paginator(chall, 12) # Show 12 contacts per page.
+
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
             data = dumps(
                 [
                     {
@@ -83,10 +111,11 @@ def chall(request , pk):
                 return JsonResponse(context)
     else:
         return redirect('/create_team')
-    context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data }
+    context = {'chall' : chall , 'type_chall' : type_chall , 'data' : data, 'page_obj': page_obj}
     return render(request ,  'base/chall/chall.html' , context )
 
 
+#Team
 @login_required(login_url='login')
 def create_team(request):
     form = TeamForm()
@@ -179,15 +208,21 @@ def logout(request):
 
 def Users(request):
     users = User.objects.all().order_by('-score')
-    context = {'users': users}
+    paginator = Paginator(users, 15) # Show 15 team per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'users': users, 'page_obj': page_obj}
     return render(request, 'base/user/user.html', context)
 
 def teams(request):
     teams  = Team.objects.all() # get all teams
-    context = {'teams': teams}
+    paginator = Paginator(teams, 15) # Show 15 team per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
     return render(request, 'base/teams/teams.html' , context)
-
-
 
 def TeamProfile(request , pk):
     team = None
