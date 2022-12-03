@@ -8,6 +8,10 @@
 {% block content %}
 <!--<a href="{% url 'create_team' %}"> U don't have team ??? </a>-->
 <div class="container">
+	<form  id="search" method="GET">
+		<input type="text" name="search" id="text_search" placeholder="search">
+		<button type="submit"> Search</button>
+	</form>
 	<div id="score">
 		<div class="table-responsive">
 			<table class="table table-striped">
