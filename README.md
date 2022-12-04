@@ -5,12 +5,14 @@ many functions as pagination, finding, backend method such as register, login, s
 
 This repo includes our source code of project and video demo
 
+`link video demo in youtube:` [video](https://youtu.be/VZejVRNfC-k)
+
 ---
 admin account :
 - username: j1s0o
 - passwd: 1
 ---
-`link video demo in youtube:` [video](https://youtu.be/VZejVRNfC-k)
+
 
 | Author  | Description |
 | ------------- | ------------- |
