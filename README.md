@@ -10,7 +10,7 @@ admin account :
 - username: j1s0o
 - passwd: 1
 ---
-`link video demo:`
+`link video demo:` [video](https://youtu.be/VZejVRNfC-k)
 
 | Author  | Description |
 | ------------- | ------------- |
