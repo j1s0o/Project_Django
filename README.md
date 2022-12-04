@@ -4,6 +4,7 @@ Our last term project in Web Application Programming class to help understanding
 many functions as pagination, finding, backend method such as register, login, submmit flag, .... by using Django.
 
 This repo includes our source code of project and video demo
+
 ---
 admin account :
 - username: j1s0o
@@ -14,9 +15,6 @@ admin account :
 | Author  | Description |
 | ------------- | ------------- |
 |Nguyễn Xuân Thắng | AKA: J1sOo who is backendev and web security player Facebook|
-
- 
-
 |Truơng Văn Rồng | AKA: GiongfNef who is cute guy Facebook|
 
  

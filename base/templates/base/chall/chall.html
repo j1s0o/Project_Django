@@ -130,16 +130,33 @@
     <h2 style="text-align : center">Reverse</h2>
     <div class="container mt-1">
       <div class="row">
-        {% for i in chall %}
+        {% for j in page_obj %}
         <div class="col-md-2 col-sm-6" style="padding:30px 20px;">
-          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name = "{{i.chall_name}}" chall-decription="{{i.decription}}" chall-link="{{i.link}}"  chall-author="{{i.author}}">
-            <img src="{{i.img}}" alt="error" id='{{i.chall_name}}_img'>
-            <h5 class="card-title  mt-2 mb-2 text-center">{{i.chall_name}}</h5>
-            <h5 class="card-title  mt-2 mb-2 text-center">{{i.point}} points</h5>
+          <div class="card card-block" data-bs-toggle="modal" data-bs-target="#exampleModal" chall-name="{{j.chall_name}}"
+            chall-decription="{{j.decription}}" chall-link="{{j.link}} " chall-author="{{j.author}}" >
+            <img src="{{j.img}}" alt="error" id='{{j.chall_name}}_img'>
+            <h5 class="card-title  mt-2 mb-2 text-center " id='{{j.chall_name}}'>{{j.chall_name}}</h5>
+            <h5 class="card-title  mt-2 mb-2 text-center">{{j.point}} points</h5>
           </div>
         </div>
-    {% endfor %}
-
+        {% endfor %}
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+      
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+      
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
     {% endif %}
 
     <!--Each modal when we click-->
