@@ -16,7 +16,7 @@ admin account :
 
 | Author  | Description |
 | ------------- | ------------- |
-|Nguyễn Xuân Thắng | AKA: J1sOo who is backendev and web security player Facebook|
+|Nguyễn Xuân Thắng | AKA: J1s0o who is backendev and web security player Facebook|
 |Truơng Văn Rồng | AKA: GiongfNef who is cute guy Facebook|
 
  
