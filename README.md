@@ -4,6 +4,7 @@ Our last term project in Web Application Programming class to help understanding
 many functions as pagination, finding, backend method such as register, login, submmit flag, .... by using Django.
 
 This repo includes our source code of project and video demo
+---
 
 `link video demo in youtube:` [video](https://youtu.be/VZejVRNfC-k)
 
