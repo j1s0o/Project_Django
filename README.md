@@ -1,6 +1,6 @@
 # Project SeaTF using Django - Ctfd platform | NT208 | UIT
 
-Our last term project in Web Application Programming class to help understanding how to build a web site with
+Our last term project in Web Application Programming class to help understand how to build a web site with
 many functions as pagination, finding, backend method such as register, login, submmit flag, .... by using Django.
 
 This repo includes our source code of project and video demo
